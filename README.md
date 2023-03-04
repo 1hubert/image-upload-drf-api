@@ -1,1 +1,1 @@
-# image-upload-drf-api
+# Image Upload Django Rest Framework API
