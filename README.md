@@ -10,7 +10,7 @@ $ docker compose build
 ```
 $ docker compose up
 ```
-1) Stop running containers & clean up:
+3) Stop running containers & clean up:
 ```
 $ docker compose down
 ```
