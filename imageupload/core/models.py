@@ -43,7 +43,10 @@ class AccountTier(models.Model):
     plan_name = models.CharField(unique=True, max_length=60)
     preserve_original_image = models.BooleanField(default=False)
     allow_expiring_links = models.BooleanField(default=False)
-    allowed_thumbnail_sizes = models.ManyToManyField(ThumbnailSize, related_name='account_tiers')
+    allowed_thumbnail_sizes = models.ManyToManyField(
+        ThumbnailSize,
+        related_name='account_tiers'
+    )
 
 
 class User(AbstractBaseUser, PermissionsMixin):
