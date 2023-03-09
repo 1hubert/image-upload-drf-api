@@ -18,6 +18,7 @@ class UserAdmin(BaseUserAdmin):
             {
                 'fields': (
                     'is_superuser',
+                    'tier'
                 )
             }
         ),
@@ -33,7 +34,8 @@ class UserAdmin(BaseUserAdmin):
                     'username',
                     'password1',
                     'password2',
-                    'is_superuser'
+                    'is_superuser',
+                    'tier'
                 )
             }
         ),
