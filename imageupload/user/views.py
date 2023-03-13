@@ -4,6 +4,7 @@ from rest_framework.response import Response
 
 from . import serializers
 
+
 class LoginView(views.APIView):
     # This view should be accessible also for unauthenticated users.
     permission_classes = (permissions.AllowAny,)
@@ -15,3 +16,10 @@ class LoginView(views.APIView):
         user = serializer.validated_data['user']
         login(request, user)
         return Response(None, status=status.HTTP_202_ACCEPTED)
+
+
+class LogoutView(views.APIView):
+
+    def post(self, request, format=None):
+        logout(request)
+        return Response(None, status=status.HTTP_204_NO_CONTENT)
