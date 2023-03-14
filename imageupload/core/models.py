@@ -1,6 +1,9 @@
 """
 Database models.
 """
+import uuid
+import os
+
 from django.contrib.auth.models import (
     AbstractBaseUser,
     BaseUserManager,
@@ -8,6 +11,14 @@ from django.contrib.auth.models import (
 )
 from django.core.validators import MinValueValidator
 from django.db import models
+
+
+def image_file_path(instance, filename):
+    """Generate file path for the new image."""
+    ext = os.path.splitext(filename)[1]
+    filename = f'{uuid.uuid4()}{ext}'
+
+    return os.path.join('uploads', 'image', filename)
 
 
 class UserManager(BaseUserManager):
@@ -62,3 +73,12 @@ class User(AbstractBaseUser, PermissionsMixin):
     objects = UserManager()
 
     USERNAME_FIELD = 'username'
+
+
+class Image(models.Model):
+    """Image model."""
+    owner = models.ForeignKey(
+        User,
+        on_delete=models.CASCADE
+    )
+    image = models.ImageField(upload_to=image_file_path)
