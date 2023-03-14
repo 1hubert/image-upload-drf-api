@@ -1,6 +1,7 @@
 from django.contrib.auth import login, logout
 from rest_framework import permissions, views, status
 from rest_framework.response import Response
+from rest_framework.settings import api_settings
 
 from . import serializers
 
@@ -8,6 +9,7 @@ from . import serializers
 class LoginView(views.APIView):
     # This view should be accessible also for unauthenticated users.
     permission_classes = (permissions.AllowAny,)
+    serializer_class = serializers.LoginSerializer
 
     def post(self, request, format=None):
         serializer = serializers.LoginSerializer(data=self.request.data,
