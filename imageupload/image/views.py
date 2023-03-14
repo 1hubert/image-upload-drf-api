@@ -1,14 +1,20 @@
-from rest_framework import generics, status, permissions
+from rest_framework import generics, status, permissions, viewsets
 from rest_framework.decorators import action
 from rest_framework.response import Response
 
 from image import serializers
+from core.models import Image
 
-
-class ImageView(generics.CreateAPIView):
-    """View for uploading images."""
+class ImageView(viewsets.ModelViewSet):
+    """View for listing and uploading images."""
     serializer_class = serializers.ImageSerializer
     permission_classes = (permissions.IsAuthenticated,)
+    queryset = Image.objects.all()
+
+    @action(methods=['GET'], detail=False)
+    def get_queryset(self):
+        """Retrieve images for authenticated user."""
+        return self.queryset.filter(owner=self.request.user).order_by('-id')
 
     def perform_create(self, serializer):
         serializer.save(owner=self.request.user)

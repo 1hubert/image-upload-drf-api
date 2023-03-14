@@ -7,6 +7,9 @@ from rest_framework.routers import DefaultRouter
 
 from . import views
 
+router = DefaultRouter()
+router.register('', views.ImageView)
+
 urlpatterns = [
-    path('upload-image/', views.ImageView.as_view()),
+    path('', include(router.urls))
 ]
