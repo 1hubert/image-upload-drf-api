@@ -11,7 +11,6 @@ class ImageView(viewsets.ModelViewSet):
     permission_classes = (permissions.IsAuthenticated,)
     queryset = Image.objects.all()
 
-    @action(methods=['GET'], detail=False)
     def get_queryset(self):
         """Retrieve images for authenticated user."""
         return self.queryset.filter(owner=self.request.user).order_by('-id')
@@ -19,7 +18,6 @@ class ImageView(viewsets.ModelViewSet):
     def perform_create(self, serializer):
         serializer.save(owner=self.request.user)
 
-    @action(methods=['POST'], detail=False)
     def upload_image(self, request, pk=None):
         serializer = self.get_serializer(data=request.data)
 
