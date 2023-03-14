@@ -2,6 +2,7 @@ from django.contrib.auth import authenticate
 
 from rest_framework import serializers
 
+
 class LoginSerializer(serializers.Serializer):
     """
     This serializer defines two fields for authentication:

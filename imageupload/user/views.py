@@ -1,7 +1,6 @@
 from django.contrib.auth import login, logout
 from rest_framework import permissions, views, status
 from rest_framework.response import Response
-from rest_framework.settings import api_settings
 
 from . import serializers
 
@@ -12,8 +11,10 @@ class LoginView(views.APIView):
     serializer_class = serializers.LoginSerializer
 
     def post(self, request, format=None):
-        serializer = serializers.LoginSerializer(data=self.request.data,
-            context={ 'request': self.request })
+        serializer = serializers.LoginSerializer(
+            data=self.request.data,
+            context={'request': self.request}
+        )
         serializer.is_valid(raise_exception=True)
         user = serializer.validated_data['user']
         login(request, user)
