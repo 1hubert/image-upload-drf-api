@@ -1,5 +1,11 @@
 # Image Upload Django Rest Framework API
 
+## Overview
+
+This API allows authenticated users to upload images and get their unique links.
+
+I'm currently working on auto-generating thumbnails of various sizes based on the user account tier, as well allowing users with certain tiers to fetch an expiring link to a specified image.
+
 ## Running the Django app
 
 ### Run with Docker
