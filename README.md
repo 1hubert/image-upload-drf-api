@@ -23,7 +23,7 @@ $ docker compose up
 $ docker compose down
 ```
 
-## Run locally
+### Run locally
 
 1) Install dependencies using the Python Package Manager
 ```
@@ -41,3 +41,11 @@ $ python manage.py migrate
 ```
 $ python manage.py runserver
 ```
+
+## Endpoints
+
+|       Intent       |   Endpoint  | HTTP Request |                    Payload                   |              Response              |
+|:------------------:|:-----------:|:------------:|:--------------------------------------------:|:----------------------------------:|
+|     List images    | /api/images |      GET     |                       -                      | [{"id": 0, "image_url": "string"}] |
+| Upload a new image | /api/images |     POST     |                image (binary)                |  {"id": 0, "image_url": "string"}  |
+|       Log In       | /user/login |     POST     | {"username": "string", "password": "string"} |                  -                 |
